@@ -1,6 +1,6 @@
 package com.teamsfinder.userreadservice.user.model;
 
-import lombok.Data;
+import com.teamsfinder.userreadservice.tag.model.Tag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.ws.rs.GET;
 import java.util.List;
 import java.util.UUID;
 
