@@ -2,7 +2,6 @@ package com.teamsfinder.userreadservice.user.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,7 +22,7 @@ class User {
     private Long id;
     private UUID keyCloakId;
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private AccountType accountType;
     private String githubProfileUrl;
     private String profilePictureUrl;
     @ManyToMany
