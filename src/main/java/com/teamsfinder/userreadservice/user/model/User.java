@@ -1,6 +1,8 @@
 package com.teamsfinder.userreadservice.user.model;
 
 import com.teamsfinder.userreadservice.tag.model.Tag;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +23,10 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-class User {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
