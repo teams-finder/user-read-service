@@ -5,5 +5,4 @@ import com.teamsfinder.userreadservice.user.dto.UserDto;
 import java.security.Principal;
 
 public interface UserService {
-    UserDto createUser(Principal principal);
 }
