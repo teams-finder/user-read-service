@@ -37,6 +37,7 @@ public class User {
     private AccountType accountType;
     private String githubProfileUrl;
     private String profilePictureUrl;
+    private boolean blocked;
     @ManyToMany
     @JoinTable(
             name = "user_tags",
