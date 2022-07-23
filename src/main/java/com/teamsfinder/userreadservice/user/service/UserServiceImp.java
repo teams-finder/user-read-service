@@ -23,7 +23,7 @@ class UserServiceImp implements UserService {
 
     private List<UserDto> mapUsersToDto(List<User> users) {
         return users.stream()
-                .map(UserMapper::mapToDto)
+                .map(UserMapper::mapUserToDto)
                 .toList();
     }
 
@@ -34,11 +34,7 @@ class UserServiceImp implements UserService {
     @Override
     public UserDto getUserById(Long id) {
         User user = getUserFromRepository(id);
-        return mapUserToDto(user);
-    }
-
-    private UserDto mapUserToDto(User user) {
-        return UserMapper.mapToDto(user);
+        return UserMapper.mapUserToDto(user);
     }
 
     private User getUserFromRepository(Long id) {
