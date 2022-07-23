@@ -17,7 +17,7 @@ class UserServiceImp implements UserService {
 
     @Override
     public List<UserDto> getAllUsers() {
-        List<User> users = getAll();
+        List<User> users = getAllFromRepository();
         return mapUsersToDto(users);
     }
 
@@ -27,13 +27,13 @@ class UserServiceImp implements UserService {
                 .toList();
     }
 
-    private List<User> getAll() {
+    private List<User> getAllFromRepository() {
         return (List<User>) userRepository.findAll();
     }
 
     @Override
     public UserDto getUserById(Long id) {
-        User user = getUser(id);
+        User user = getUserFromRepository(id);
         return mapUserToDto(user);
     }
 
@@ -41,7 +41,7 @@ class UserServiceImp implements UserService {
         return UserMapper.mapToDto(user);
     }
 
-    private User getUser(Long id) {
+    private User getUserFromRepository(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
