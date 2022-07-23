@@ -1,6 +1,6 @@
 package com.teamsfinder.userreadservice.user.service;
 
-import com.teamsfinder.userreadservice.user.dto.UserDto;
+import com.teamsfinder.userreadservice.user.dto.UserResponseDto;
 import com.teamsfinder.userreadservice.user.model.AccountType;
 import com.teamsfinder.userreadservice.user.model.User;
 import com.teamsfinder.userreadservice.user.repository.UserRepository;
@@ -45,8 +45,8 @@ class UserServiceImpTest {
         //when
         Mockito.when(userRepository.findAll()).thenReturn(List.of(testUser));
         //then
-        List<UserDto> usersDtos = userService.getAllUsers();
-        UserDto userDto = usersDtos.get(0);
+        List<UserResponseDto> usersDtos = userService.getAllUsers();
+        UserResponseDto userDto = usersDtos.get(0);
         assertThat(userDto.id()).isEqualTo(1L);
         assertThat(userDto.keyCloakId()).isEqualTo(USER_KEYCLOAK_ID);
         assertThat(userDto.accountType()).isEqualTo(AccountType.USER.toString());
@@ -62,7 +62,7 @@ class UserServiceImpTest {
         //when
         Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(testUser));
         //then
-        UserDto userDto = userService.getUserById(1L);
+        UserResponseDto userDto = userService.getUserById(1L);
         assertThat(userDto.id()).isEqualTo(1L);
         assertThat(userDto.keyCloakId()).isEqualTo(USER_KEYCLOAK_ID);
         assertThat(userDto.accountType()).isEqualTo(AccountType.USER.toString());

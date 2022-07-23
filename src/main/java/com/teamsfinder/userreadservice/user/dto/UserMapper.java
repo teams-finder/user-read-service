@@ -11,9 +11,9 @@ import java.util.List;
 
 @UtilityClass
 public class UserMapper {
-    public static UserDto mapUserToDto(User user){
+    public static UserResponseDto mapUserToDto(User user){
         AccountType accountType = user.getAccountType();
-        return new UserDto(user.getId(), user.getKeyCloakId(), accountType.toString(), user.getGithubProfileUrl(), user.getProfilePictureUrl(), user.isBlocked(), mapTagsToDto(user.getTags()));
+        return new UserResponseDto(user.getId(), user.getKeyCloakId(), accountType.toString(), user.getGithubProfileUrl(), user.getProfilePictureUrl(), user.isBlocked(), mapTagsToDto(user.getTags()));
     }
 
     private static List<TagDto> mapTagsToDto(List<Tag> tags) {

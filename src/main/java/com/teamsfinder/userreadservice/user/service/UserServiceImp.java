@@ -1,6 +1,6 @@
 package com.teamsfinder.userreadservice.user.service;
 
-import com.teamsfinder.userreadservice.user.dto.UserDto;
+import com.teamsfinder.userreadservice.user.dto.UserResponseDto;
 import com.teamsfinder.userreadservice.user.dto.UserMapper;
 import com.teamsfinder.userreadservice.user.exception.UserNotFoundException;
 import com.teamsfinder.userreadservice.user.model.User;
@@ -16,12 +16,12 @@ class UserServiceImp implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public List<UserDto> getAllUsers() {
+    public List<UserResponseDto> getAllUsers() {
         List<User> users = getAllFromRepository();
         return mapUsersToDto(users);
     }
 
-    private List<UserDto> mapUsersToDto(List<User> users) {
+    private List<UserResponseDto> mapUsersToDto(List<User> users) {
         return users.stream()
                 .map(UserMapper::mapUserToDto)
                 .toList();
@@ -32,7 +32,7 @@ class UserServiceImp implements UserService {
     }
 
     @Override
-    public UserDto getUserById(Long id) {
+    public UserResponseDto getUserById(Long id) {
         User user = getUserFromRepository(id);
         return UserMapper.mapUserToDto(user);
     }
