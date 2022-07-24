@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class TagMapper {
+
     public static TagResponseDto mapTagToDto(Tag tag){
         return new TagResponseDto(tag.getId(), tag.getName());
     }

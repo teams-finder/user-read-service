@@ -11,6 +11,7 @@ import java.util.List;
 
 @UtilityClass
 public class UserMapper {
+
     public static UserResponseDto mapUserToDto(User user){
         AccountType accountType = user.getAccountType();
         return new UserResponseDto(user.getId(), user.getKeyCloakId(), accountType.toString(), user.getGithubProfileUrl(), user.getProfilePictureUrl(), user.isBlocked(), mapTagsToDto(user.getTags()));

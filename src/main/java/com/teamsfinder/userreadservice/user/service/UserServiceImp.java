@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 class UserServiceImp implements UserService {
+
     private final UserRepository userRepository;
 
     @Override

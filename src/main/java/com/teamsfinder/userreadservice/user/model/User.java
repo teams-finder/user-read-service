@@ -30,6 +30,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "user_profile")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
