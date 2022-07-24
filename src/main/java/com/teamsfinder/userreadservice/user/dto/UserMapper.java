@@ -1,6 +1,6 @@
 package com.teamsfinder.userreadservice.user.dto;
 
-import com.teamsfinder.userreadservice.tag.dto.TagDto;
+import com.teamsfinder.userreadservice.tag.dto.TagResponseDto;
 import com.teamsfinder.userreadservice.tag.dto.TagMapper;
 import com.teamsfinder.userreadservice.tag.model.Tag;
 import com.teamsfinder.userreadservice.user.model.AccountType;
@@ -16,9 +16,9 @@ public class UserMapper {
         return new UserResponseDto(user.getId(), user.getKeyCloakId(), accountType.toString(), user.getGithubProfileUrl(), user.getProfilePictureUrl(), user.isBlocked(), mapTagsToDto(user.getTags()));
     }
 
-    private static List<TagDto> mapTagsToDto(List<Tag> tags) {
+    private static List<TagResponseDto> mapTagsToDto(List<Tag> tags) {
         return tags.stream()
-                .map(TagMapper::mapToDto)
+                .map(TagMapper::mapTagToDto)
                 .toList();
     }
 }
