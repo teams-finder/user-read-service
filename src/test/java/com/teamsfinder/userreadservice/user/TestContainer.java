@@ -1,4 +1,4 @@
-package com.teamsfinder.userreadservice.user.controller;
+package com.teamsfinder.userreadservice.user;
 
 import com.teamsfinder.userreadservice.UserReadServiceApplication;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,7 +7,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 @SpringBootTest(classes = UserReadServiceApplication.class)
-class TestContainer {
+public abstract class TestContainer {
 
     private static final PostgreSQLContainer postgresContainer;
     private static final String SPRING_DB_URL_PROPERTY = "spring.datasource.url";

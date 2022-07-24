@@ -1,18 +1,16 @@
 package com.teamsfinder.userreadservice.user.controller;
 
+import com.teamsfinder.userreadservice.user.TestContainer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.net.URI;
-
-import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureMockMvc
-class UserControllerTest extends TestContainer{
+class UserControllerTest extends TestContainer {
 
     private static final String GET_ALL_END_POINT = "/users";
     private static final String FIRST_USER_ID_JSON_PATH = "$.[0].id";
@@ -36,8 +34,9 @@ class UserControllerTest extends TestContainer{
     void shouldGetAllUsers() throws Exception {
         //given
         //when
+        ResultActions performRequest = mockMvc.perform(MockMvcRequestBuilders.get(GET_ALL_END_POINT));
         //then
-        mockMvc.perform(MockMvcRequestBuilders.get(GET_ALL_END_POINT))
+        performRequest
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath(FIRST_USER_ID_JSON_PATH).value(1L));
     }
@@ -46,14 +45,16 @@ class UserControllerTest extends TestContainer{
     void shouldGetUserById() throws Exception {
         //given
         //when
+        ResultActions performRequest =  mockMvc.perform(MockMvcRequestBuilders.get(GET_USER_END_POINT));
         //then
-        mockMvc.perform(MockMvcRequestBuilders.get(GET_USER_END_POINT))
+        performRequest
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath(ID_JSON_PATH).value(1L))
                 .andExpect(MockMvcResultMatchers.jsonPath(KEYCLOAK_ID_JSON_PATH).value(KEYCLOAK_ID_VALUE))
                 .andExpect(MockMvcResultMatchers.jsonPath(ACCOUNT_TYPE_JSON_PATH).value(ACCOUNT_TYPE_VALUE))
                 .andExpect(MockMvcResultMatchers.jsonPath(GITHUB_JSON_PATH).value(GITHUB_VALUE))
                 .andExpect(MockMvcResultMatchers.jsonPath(PICTURE_JSON_PATH).value(PICTURE_VALUE))
-                .andExpect(MockMvcResultMatchers.jsonPath(TAGS_JSON_PATH).exists());
+                .andExpect(MockMvcResultMatchers.jsonPath(TAGS_JSON_PATH).exists())
+                .andExpect(MockMvcResultMatchers.jsonPath(BLOCKED_JSON_PATH).value(false));
     }
 }
