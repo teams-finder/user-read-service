@@ -27,7 +27,7 @@ class UserServiceImpTest {
     private UserRepository userRepository;
 
     @InjectMocks
-    private UserServiceImp userService;
+    private UserServiceImp underTest;
 
     private User testUser = User.builder()
             .id(1L)
@@ -42,10 +42,10 @@ class UserServiceImpTest {
     @Test
     void getAllUsers() {
         //given
-        //when
         Mockito.when(userRepository.findAll()).thenReturn(List.of(testUser));
+        //when
+        List<UserResponseDto> usersDtos = underTest.getAllUsers();
         //then
-        List<UserResponseDto> usersDtos = userService.getAllUsers();
         UserResponseDto userDto = usersDtos.get(0);
         assertThat(userDto.id()).isEqualTo(1L);
         assertThat(userDto.keyCloakId()).isEqualTo(USER_KEYCLOAK_ID);
@@ -59,10 +59,10 @@ class UserServiceImpTest {
     @Test
     void getUserById() {
         //given
-        //when
         Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(testUser));
+        //when
+        UserResponseDto userDto = underTest.getUserById(1L);
         //then
-        UserResponseDto userDto = userService.getUserById(1L);
         assertThat(userDto.id()).isEqualTo(1L);
         assertThat(userDto.keyCloakId()).isEqualTo(USER_KEYCLOAK_ID);
         assertThat(userDto.accountType()).isEqualTo(AccountType.USER.toString());
