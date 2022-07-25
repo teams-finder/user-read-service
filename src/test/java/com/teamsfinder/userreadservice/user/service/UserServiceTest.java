@@ -1,15 +1,14 @@
 package com.teamsfinder.userreadservice.user.service;
 
+import com.teamsfinder.userreadservice.user.UnitBaseClass;
 import com.teamsfinder.userreadservice.user.dto.UserResponseDto;
 import com.teamsfinder.userreadservice.user.model.AccountType;
 import com.teamsfinder.userreadservice.user.model.User;
 import com.teamsfinder.userreadservice.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +16,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(MockitoExtension.class)
-class UserServiceImpTest {
+class UserServiceTest extends UnitBaseClass {
+
     private static final String USER_KEYCLOAK_ID = "KEYCLOAK_ID";
     private static final String USER_GITHUB = "GITHUB";
     private static final String USER_PICTURE = "PICTURE";
@@ -27,7 +26,7 @@ class UserServiceImpTest {
     private UserRepository userRepository;
 
     @InjectMocks
-    private UserServiceImp underTest;
+    private UserService underTest;
 
     private User testUser = User.builder()
             .id(1L)

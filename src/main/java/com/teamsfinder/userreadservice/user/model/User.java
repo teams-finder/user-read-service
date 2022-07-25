@@ -34,20 +34,23 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotEmpty
     private String keyCloakId;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
+
     private String githubProfileUrl;
+
     private String profilePictureUrl;
+
     private boolean blocked;
-    
+
     @ManyToMany
-    @JoinTable(
-            name = "user_tags",
+    @JoinTable(name = "user_tags",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
 }

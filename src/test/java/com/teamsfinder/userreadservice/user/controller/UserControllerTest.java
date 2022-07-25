@@ -1,6 +1,6 @@
 package com.teamsfinder.userreadservice.user.controller;
 
-import com.teamsfinder.userreadservice.user.TestContainer;
+import com.teamsfinder.userreadservice.user.IntegrationBaseClass;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -9,8 +9,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@AutoConfigureMockMvc
-class UserControllerTest extends TestContainer {
+class UserControllerTest extends IntegrationBaseClass {
 
     private static final String GET_ALL_END_POINT = "/users";
     private static final String FIRST_USER_ID_JSON_PATH = "$.[0].id";
@@ -26,9 +25,6 @@ class UserControllerTest extends TestContainer {
     private static final String ACCOUNT_TYPE_VALUE = "USER";
     private static final String GITHUB_VALUE = "GITHUB";
     private static final String PICTURE_VALUE = "PICTURE";
-
-    @Autowired
-    private MockMvc mockMvc;
 
     @Test
     void shouldGetAllUsers() throws Exception {
