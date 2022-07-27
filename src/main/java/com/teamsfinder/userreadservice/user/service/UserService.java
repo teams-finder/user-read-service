@@ -1,8 +1,10 @@
 package com.teamsfinder.userreadservice.user.service;
 
+import com.teamsfinder.userreadservice.tag.dto.TagResponseDto;
+import com.teamsfinder.userreadservice.tag.model.Tag;
 import com.teamsfinder.userreadservice.user.dto.UserResponseDto;
-import com.teamsfinder.userreadservice.user.dto.UserMapper;
 import com.teamsfinder.userreadservice.user.exception.UserNotFoundException;
+import com.teamsfinder.userreadservice.user.model.AccountType;
 import com.teamsfinder.userreadservice.user.model.User;
 import com.teamsfinder.userreadservice.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +25,7 @@ public class UserService {
 
     private List<UserResponseDto> mapUsersToDto(List<User> users) {
         return users.stream()
-                .map(UserMapper::mapUserToDto)
+                .map(this::mapUserToDto)
                 .toList();
     }
 
@@ -33,7 +35,33 @@ public class UserService {
 
     public UserResponseDto getUserById(Long id) {
         User user = getUserFromRepository(id);
-        return UserMapper.mapUserToDto(user);
+        return mapUserToDto(user);
+    }
+
+    private UserResponseDto mapUserToDto(User user) {
+        AccountType accountType = user.getAccountType();
+        return new UserResponseDto(
+                user.getId(),
+                user.getKeyCloakId(),
+                accountType.toString(),
+                user.getGithubProfileUrl(),
+                user.getProfilePictureUrl(),
+                user.isBlocked(),
+                mapTagsToDto(user.getTags())
+        );
+    }
+
+    private List<TagResponseDto> mapTagsToDto(List<Tag> tags) {
+        return tags.stream()
+                .map(tag -> mapTagToDto(tag))
+                .toList();
+    }
+
+    private TagResponseDto mapTagToDto(Tag tag) {
+        return new TagResponseDto(
+                tag.getId(),
+                tag.getName()
+        );
     }
 
     private User getUserFromRepository(Long id) {
