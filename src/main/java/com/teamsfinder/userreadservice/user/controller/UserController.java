@@ -3,6 +3,7 @@ package com.teamsfinder.userreadservice.user.controller;
 import com.teamsfinder.userreadservice.user.dto.UserResponseDto;
 import com.teamsfinder.userreadservice.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
