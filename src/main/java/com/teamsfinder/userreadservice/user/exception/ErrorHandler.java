@@ -12,8 +12,8 @@ class ErrorHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    ErroResponse handleUserNotFoundException(UserNotFoundException exception){
-        return new ErroResponse(HttpStatus.NOT_FOUND.toString(),
+    ErrorResponse handleUserNotFoundException(UserNotFoundException exception){
+        return new ErrorResponse(HttpStatus.NOT_FOUND.toString(),
                 exception.getMessage(), LocalDateTime.now());
     }
 }
