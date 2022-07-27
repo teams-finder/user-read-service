@@ -9,6 +9,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 class UserControllerTest extends IntegrationBaseClass {
 
     private static final String GET_ALL_END_POINT = "/users";
@@ -30,27 +33,27 @@ class UserControllerTest extends IntegrationBaseClass {
     void shouldGetAllUsers() throws Exception {
         //given
         //when
-        ResultActions performRequest = mockMvc.perform(MockMvcRequestBuilders.get(GET_ALL_END_POINT));
+        ResultActions performRequest = mockMvc.perform(get(GET_ALL_END_POINT));
         //then
         performRequest
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath(FIRST_USER_ID_JSON_PATH).value(1L));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath(FIRST_USER_ID_JSON_PATH).value(1L));
     }
 
     @Test
     void shouldGetUserById() throws Exception {
         //given
         //when
-        ResultActions performRequest =  mockMvc.perform(MockMvcRequestBuilders.get(GET_USER_END_POINT));
+        ResultActions performRequest =  mockMvc.perform(get(GET_USER_END_POINT));
         //then
         performRequest
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath(ID_JSON_PATH).value(1L))
-                .andExpect(MockMvcResultMatchers.jsonPath(KEYCLOAK_ID_JSON_PATH).value(KEYCLOAK_ID_VALUE))
-                .andExpect(MockMvcResultMatchers.jsonPath(ACCOUNT_TYPE_JSON_PATH).value(ACCOUNT_TYPE_VALUE))
-                .andExpect(MockMvcResultMatchers.jsonPath(GITHUB_JSON_PATH).value(GITHUB_VALUE))
-                .andExpect(MockMvcResultMatchers.jsonPath(PICTURE_JSON_PATH).value(PICTURE_VALUE))
-                .andExpect(MockMvcResultMatchers.jsonPath(TAGS_JSON_PATH).exists())
-                .andExpect(MockMvcResultMatchers.jsonPath(BLOCKED_JSON_PATH).value(false));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath(ID_JSON_PATH).value(1L))
+                .andExpect(jsonPath(KEYCLOAK_ID_JSON_PATH).value(KEYCLOAK_ID_VALUE))
+                .andExpect(jsonPath(ACCOUNT_TYPE_JSON_PATH).value(ACCOUNT_TYPE_VALUE))
+                .andExpect(jsonPath(GITHUB_JSON_PATH).value(GITHUB_VALUE))
+                .andExpect(jsonPath(PICTURE_JSON_PATH).value(PICTURE_VALUE))
+                .andExpect(jsonPath(TAGS_JSON_PATH).exists())
+                .andExpect(jsonPath(BLOCKED_JSON_PATH).value(false));
     }
 }
