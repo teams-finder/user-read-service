@@ -10,6 +10,7 @@ public record UserResponseDto(
         String accountType,
         String githubProfileUrl,
         String profilePictureUrl,
-        boolean blocked, List<TagResponseDto> tags) {
+        boolean blocked,
+        List<TagResponseDto> tags) {
 
 }
