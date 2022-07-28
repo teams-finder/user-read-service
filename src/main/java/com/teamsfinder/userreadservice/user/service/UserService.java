@@ -39,28 +39,7 @@ public class UserService {
     }
 
     private UserResponseDto mapUserToDto(User user) {
-        return new UserResponseDto(
-                user.getId(),
-                user.getKeyCloakId(),
-                user.getAccountType(),
-                user.getGithubProfileUrl(),
-                user.getProfilePictureUrl(),
-                user.isBlocked(),
-                mapTagsToDto(user.getTags())
-        );
-    }
-
-    private List<TagResponseDto> mapTagsToDto(List<Tag> tags) {
-        return tags.stream()
-                .map(tag -> mapTagToDto(tag))
-                .toList();
-    }
-
-    private TagResponseDto mapTagToDto(Tag tag) {
-        return new TagResponseDto(
-                tag.getId(),
-                tag.getName()
-        );
+        return new UserResponseDto(user);
     }
 
     private User getUserFromRepository(Long id) {
