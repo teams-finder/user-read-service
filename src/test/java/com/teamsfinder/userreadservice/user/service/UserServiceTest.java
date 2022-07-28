@@ -48,6 +48,7 @@ class UserServiceTest extends UnitBaseClass {
         List<UserResponseDto> usersDtos = underTest.getAllUsers();
 
         //then
+        assertThat(usersDtos).isNotEmpty();
         UserResponseDto userDto = usersDtos.get(0);
         assertThat(userDto.id()).isEqualTo(1L);
         assertThat(userDto.keyCloakId()).isEqualTo(USER_KEYCLOAK_ID);
