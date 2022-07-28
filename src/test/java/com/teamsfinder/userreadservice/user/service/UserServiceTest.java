@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 class UserServiceTest extends UnitBaseClass {
 
@@ -41,7 +42,7 @@ class UserServiceTest extends UnitBaseClass {
     @Test
     void getAllUsers() {
         //given
-        Mockito.when(userRepository.findAll()).thenReturn(List.of(testUser));
+        when(userRepository.findAll()).thenReturn(List.of(testUser));
 
         //when
         List<UserResponseDto> usersDtos = underTest.getAllUsers();
@@ -60,7 +61,7 @@ class UserServiceTest extends UnitBaseClass {
     @Test
     void getUserById() {
         //given
-        Mockito.when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(testUser));
+        when(userRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(testUser));
 
         //when
         UserResponseDto userDto = underTest.getUserById(1L);
