@@ -18,9 +18,9 @@ class UserControllerTest extends IntegrationBaseClass {
     void shouldGetAllUsers() throws Exception {
         //given
         //when
-        ResultActions performRequest = mockMvc.perform(get("/users"));
+        ResultActions resultActions = mockMvc.perform(get("/users"));
         //then
-        performRequest
+        resultActions
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].id").value(1L));
     }
@@ -29,9 +29,9 @@ class UserControllerTest extends IntegrationBaseClass {
     void shouldGetUserById() throws Exception {
         //given
         //when
-        ResultActions performRequest =  mockMvc.perform(get("/users/1"));
+        ResultActions resultActions =  mockMvc.perform(get("/users/1"));
         //then
-        performRequest
+        resultActions
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.keyCloakId").value("testId"))
