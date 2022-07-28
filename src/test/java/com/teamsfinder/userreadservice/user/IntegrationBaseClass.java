@@ -16,7 +16,7 @@ public abstract class IntegrationBaseClass {
     private static final PostgreSQLContainer postgresContainer;
 
     static {
-        postgresContainer = (PostgreSQLContainer) new PostgreSQLContainer("postgres:latest")
+        postgresContainer = (PostgreSQLContainer) new PostgreSQLContainer("postgres:14.4")
                 .withReuse(true);
         postgresContainer.start();
     }
