@@ -3,7 +3,9 @@ package com.teamsfinder.userreadservice.tag.dto;
 import com.teamsfinder.userreadservice.tag.model.Tag;
 
 public record TagResponseDto(
+
         Long id,
+
         String name
 ) {
 
