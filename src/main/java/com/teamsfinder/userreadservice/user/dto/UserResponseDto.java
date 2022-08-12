@@ -22,7 +22,7 @@ public record UserResponseDto(
         String profilePictureUrl,
 
         boolean blocked,
-        
+
         List<TagResponseDto> tags
 ) {
 
